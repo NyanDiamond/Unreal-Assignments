@@ -2,6 +2,7 @@
 
 
 #include "DodgeballProjectile.h"
+#include "Kismet/GameplayStatics.h"
 #include "TopDownCharacter.h"
 
 // Sets default values
@@ -26,6 +27,17 @@ void ADodgeballProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActo
 	if (Cast<ATopDownCharacter>(OtherActor) != nullptr)
 	{
 		//Destroy();
+		UGameplayStatics::PlaySoundAtLocation(this, DamageSound, GetActorLocation(), 1.0f, FMath::RandRange(0.7f, 1.3f), 0.0f, BounceSoundAttentuation);
+
+		if (HitParticles != nullptr)
+		{
+			UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), HitParticles, GetActorTransform());
+		}
+	}
+
+	if (BounceSound != nullptr && NormalImpulse.Size() > 1000.0f)
+	{
+		UGameplayStatics::PlaySoundAtLocation(this, BounceSound, GetActorLocation(), 1.0f, FMath::RandRange(0.7f, 1.3f), 0.0f, BounceSoundAttentuation);
 	}
 }
 

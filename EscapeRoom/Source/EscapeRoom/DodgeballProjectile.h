@@ -18,6 +18,8 @@ private:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Dodgeball, meta = (AllowPrivateAccess = "true"))
 		class UProjectileMovementComponent* ProjectileMovement;
+
+	
 	
 public:	
 	// Sets default values for this actor's properties
@@ -29,6 +31,18 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	UPROPERTY(EditAnywhere, Category = Sound)
+		class USoundBase* BounceSound;
+
+	UPROPERTY(EditAnywhere, Category = Sound)
+		class USoundBase* DamageSound;
+
+	UPROPERTY(EditAnywhere, Category = Sound)
+		class USoundAttenuation* BounceSoundAttentuation;
+
+	UPROPERTY(EditAnywhere, Category = Particles)
+		class UParticleSystem* HitParticles;
 
 public:	
 	// Called every frame
