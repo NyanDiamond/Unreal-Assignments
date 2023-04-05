@@ -2,10 +2,10 @@
 
 #pragma once
 
+#include "PhysicsEngine/PhysicsHandleComponent.h"
 #include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
 #include "Grabber.generated.h"
-
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class DUNGEONCRAWL_API UGrabber : public USceneComponent
@@ -15,6 +15,12 @@ class DUNGEONCRAWL_API UGrabber : public USceneComponent
 public:	
 	// Sets default values for this component's properties
 	UGrabber();
+
+	UFUNCTION(BlueprintCallable)
+		void Grab();
+
+	UFUNCTION(BlueprintCallable)
+		void Release();
 
 protected:
 	// Called when the game starts
@@ -30,6 +36,12 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		float GrabRadius = 100;
+
+	UPROPERTY(EditAnywhere)
+		float holdDistance = 100;
+
+	UPROPERTY(VisibleAnywhere)
+		UPhysicsHandleComponent* physicsHandle;
 
 
 };

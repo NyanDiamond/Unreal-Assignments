@@ -108,3 +108,5 @@ bool ADungeonCrawlCharacter::GetHasRifle()
 {
 	return bHasRifle;
 }
+
+
